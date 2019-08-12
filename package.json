@@ -1,0 +1,19 @@
+{
+  "name": "desktop-todo-app",
+  "version": "1.0.0",
+  "description": "a simple electronjs todo app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "todo",
+    "app"
+  ],
+  "author": "Ali Kamal",
+  "devDependencies": {
+    "electron": "^6.0.1"
+  }
+}
