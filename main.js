@@ -19,19 +19,29 @@ function createWindow() {
   })
 
   mainWindow.loadFile(path.join(__dirname, 'src', 'index.html')).then(() => {
- todosData = store.get('todos1') || []
+    todosData = store.get('todos') || []
     mainWindow.webContents.send('item:show', todosData)
   })
- 
+
   mainWindow.on('closed', function () {
     mainWindow = null
   })
 
-  mainWindow.openDevTools();
+  // mainWindow.openDevTools();
 }
 
 ipcMain.on('item:add', (event, item) => {
+  todosData = store.get('todos') || []
+  todosData.push(item)
+  store.set('todos', todosData)
   mainWindow.webContents.send('item:add', item)
+})
+
+ipcMain.on('item:remove', (event, item) => {
+  todosData = store.get('todos')
+  todosData.splice(todosData.indexOf(item), 1)
+  store.set('todos', todosData)
+  mainWindow.webContents.send('item:show', todosData)
 })
 
 app.on('ready', createWindow)
