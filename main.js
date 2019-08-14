@@ -1,10 +1,12 @@
 const {
   app,
-  BrowserWindow
+  BrowserWindow,
+  ipcMain
 } = require('electron')
 const path = require('path')
+const Store = require('electron-store');
 
-
+const store = new Store()
 let mainWindow
 
 function createWindow() {
@@ -12,18 +14,25 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
+      nodeIntegration: true
     }
   })
 
-  mainWindow.loadFile(path.join(__dirname, 'src', 'index.html'))
-
+  mainWindow.loadFile(path.join(__dirname, 'src', 'index.html')).then(() => {
+ todosData = store.get('todos1') || []
+    mainWindow.webContents.send('item:show', todosData)
+  })
+ 
   mainWindow.on('closed', function () {
     mainWindow = null
   })
 
   mainWindow.openDevTools();
-
 }
+
+ipcMain.on('item:add', (event, item) => {
+  mainWindow.webContents.send('item:add', item)
+})
 
 app.on('ready', createWindow)
 

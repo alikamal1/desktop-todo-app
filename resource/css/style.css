@@ -1,6 +1,13 @@
 @import "bulma.min.css";
 
 .container {
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
 }
+
+.button-container {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+
 
