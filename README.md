@@ -1,4 +1,4 @@
-# Electronjs Todo App
+# Electron.js Todo App
 
 <p align="center"><img width="400" height="314" src="https://raw.githubusercontent.com/alikamal1/desktop-todo-app/master/screenshot.PNG"></p>
 
